@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Voley - Portal Premium</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --emerald-deep: #064e3b;
+            --emerald-light: #059669;
+            --gold-accent: #d97706;
+            --gold-soft: #fef3c7;
+            --premium-bg: #f8fafc;
+            --card-shadow: 0 10px 30px rgba(6, 78, 59, 0.08);
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--premium-bg);
+            color: #334155;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        h1, h2, h3, h4, .serif-font { font-family: 'Lora', serif; }
+        
+        .editorial-navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 3px solid var(--emerald-deep);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+        
+        .nav-link-custom {
+            color: var(--emerald-deep);
+            font-weight: 700;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .nav-link-custom:hover, .nav-link-custom.active {
+            color: white;
+            background-color: var(--emerald-light);
+            transform: translateY(-2px);
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, var(--emerald-deep) 0%, #022c22 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(2, 44, 34, 0.2);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .editorial-card {
+            background: white;
+            border: none;
+            border-top: 4px solid var(--emerald-light);
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .editorial-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 20px 40px rgba(6, 78, 59, 0.15);
+            border-top-color: var(--gold-accent);
+        }
+
+        .list-group-item-action {
+            transition: all 0.3s ease;
+            border-left: 0 solid var(--emerald-light);
+        }
+        
+        .list-group-item-action:hover {
+            border-left: 6px solid var(--gold-accent);
+            background-color: var(--gold-soft) !important;
+            padding-left: 1.5rem !important;
+        }
+
+        .footer-premium {
+            background-color: #022c22;
+            color: #cbd5e1;
+            border-top: 4px solid var(--gold-accent);
+            font-size: 0.9rem;
+        }
+        .footer-premium h5 {
+            color: white;
+            font-family: 'Lora', serif;
+            font-weight: 700;
+        }
+        .footer-link {
+            color: #a7f3d0;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-link:hover {
+            color: var(--gold-accent);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg editorial-navbar sticky-top py-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <span class="fs-3">🏐</span>
+                <span class="fw-bold fs-2" style="font-family: 'Lora', serif; color: var(--emerald-deep) !important;">Todo <span style="color: var(--gold-accent);">Voley</span></span>
+            </a>
+            <div class="d-flex gap-2 ms-auto">
+                <a class="nav-link-custom active" href="index.html">Inicio</a>
+                <a class="nav-link-custom" href="Analisis.html">Análisis</a>
+                <a class="nav-link-custom" href="Informes.html">Informes Completos</a>
+                <a class="nav-link-custom" href="Pizarra.html">Pizarra Táctica</a>
+                <a class="nav-link-custom" href="Contacto.html">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5 flex-grow-1" style="max-width: 1100px;">
+        
+        <div class="hero-banner mb-5 text-center text-md-start d-flex flex-column flex-md-row align-items-center justify-content-between gap-4">
+            <div>
+                <span class="badge bg-warning text-dark mb-3 fw-bold tracking-wider px-3 py-2">ANÁLISIS DE VANGUARDIA 2026</span>
+                <h1 class="display-4 fw-bold text-white">Crónicas del Vóley de Élite</h1>
+                <p class="fs-5 text-light opacity-90 mb-0">Investigaciones tácticas, estadísticas avanzadas y el pulso informativo del deporte red.</p>
+            </div>
+            <svg width="180" height="180" viewBox="0 0 100 100" class="d-none d-sm-block">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#d97706" stroke-width="2" stroke-dasharray="2 2"/>
+                <circle cx="50" cy="50" r="38" fill="#059669"/>
+                <path d="M 50 12 A 38 38 0 0 1 88 50 M 50 88 A 38 38 0 0 1 12 50" stroke="#fef3c7" stroke-width="1.5" fill="none"/>
+                <path d="M 23 23 Q 50 50 77 77 M 77 23 Q 50 50 23 77" stroke="#fef3c7" stroke-width="1" fill="none"/>
+                <circle cx="50" cy="50" r="6" fill="#d97706"/>
+            </svg>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <div class="col-lg-7">
+                <div class="editorial-card p-4 p-md-5 h-100 position-relative">
+                    <span class="badge bg-success mb-3" id="articleCategory">Análisis de Sistema</span>
+                    <h2 class="display-6 fw-bold my-2" id="articleTitle">La Evolución Dinámica del Sistema Transicional 5-1</h2>
+                    <p class="fs-6 text-secondary mt-3" id="articleContent">
+                        El voleibol moderno exige que el armador no solo distribuya el juego, sino que actúe como una amenaza ofensiva directa desde posición 2. Analizamos cómo las potencias mundiales optimizan sus tiempos de ataque rápido para desarticular los bloqueos triples contrarios.
+                    </p>
+                    <hr class="my-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <span class="small text-muted fw-bold">⏱️ Lectura: 6 min • Por Redacción</span>
+                        <a href="Informes.html" class="btn btn-dark rounded-0 px-4" style="background-color: var(--emerald-deep); border: none;">Leer Informe Completo</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <h4 class="fw-bold mb-3 text-success">📰 Artículos Destacados</h4>
+                <div class="list-group list-group-flush shadow-sm rounded-3 overflow-hidden">
+                    <button class="list-group-item list-group-item-action p-3 text-start bg-white" onclick="changeFeaturedArticle('sistema')">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1 fw-bold text-dark">El Sistema Transicional 5-1</h6>
+                            <small class="fw-bold text-success">Táctica</small>
+                        </div>
+                        <p class="mb-0 small text-muted">Cómo se reconfigura la zona ofensiva en la élite actual.</p>
+                    </button>
+                    <button class="list-group-item list-group-item-action p-3 text-start bg-white" onclick="changeFeaturedArticle('fisico')">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1 fw-bold text-dark">Preparación de Saltabilidad</h6>
+                            <small class="fw-bold text-warning">Físico</small>
+                        </div>
+                        <p class="mb-0 small text-muted">Nuevas metodologías en el desarrollo del tren inferior.</p>
+                    </button>
+                    <button class="list-group-item list-group-item-action p-3 text-start bg-white" onclick="changeFeaturedArticle('reglas')">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1 fw-bold text-dark">Ajustes Reglamentarios FIVB</h6>
+                            <small class="fw-bold text-danger">Normativa</small>
+                        </div>
+                        <p class="mb-0 small text-muted">Circular informativa sobre el toque de red y su interpretación.</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="my-5 border-top pt-5">
+            <h3 class="fw-bold text-success mb-4 text-center">📊 Cobertura Técnica Extendida</h3>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="p-4 bg-white rounded shadow-sm border-start border-3 border-success">
+                        <h5 class="fw-bold">Scouting Olímpico</h5>
+                        <p class="small text-muted">Mapeo computarizado de las tendencias de saque flotante de las delegaciones internacionales líderes.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 bg-white rounded shadow-sm border-start border-3 border-warning">
+                        <h5 class="fw-bold">Biomecánica Avanzada</h5>
+                        <p class="small text-muted">Estudio angular sobre el golpe de potencia y la aceleración del brazo ejecutor para evitar fatigas crónicas.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 bg-white rounded shadow-sm border-start border-3 border-danger">
+                        <h5 class="fw-bold">Formatos Formativos</h5>
+                        <p class="small text-muted">Herramientas didácticas diseñadas especialmente para academias juveniles y colegios de alto rendimiento.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="footer-premium pt-5 pb-4 mt-auto">
+        <div class="container" style="max-width: 1100px;">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5 class="mb-3">🏐 Todo Voley</h5>
+                    <p class="small opacity-75">El portal de referencia técnica, metodológica e informativa del voleibol competitivo global.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Secciones Técnicas</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small">
+                        <li><a href="Analisis.html" class="footer-link">Análisis e Indicadores</a></li>
+                        <li><a href="Informes.html" class="footer-link">Librería de Informes</a></li>
+                        <li><a href="Pizarra.html" class="footer-link">Pizarra Táctica 2D</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Ubicación y Canales</h5>
+                    <p class="small opacity-75 mb-1">📍 Sede Central: San Miguel, Buenos Aires</p>
+                    <p class="small opacity-75">📧 Redacción: editorial@todovoley.com</p>
+                </div>
+            </div>
+            <hr class="border-secondary my-4">
+            <div class="row small opacity-75">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">© 2026 Todo Voley. Todos los derechos reservados.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Desarrollado de forma profesional para Alexis Gabriel Caceres.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const articles = {
+            sistema: {
+                category: "Análisis de Sistema",
+                title: "La Evolución Dinámica del Sistema Transicional 5-1",
+                content: "El voleibol moderno exige que el armador no solo distribuya el juego, sino que actúe como una amenaza ofensiva directa desde posición 2. Analizamos cómo las potencias mundiales optimizan sus tiempos de ataque rápido para desarticular los bloqueos triples contrarios."
+            },
+            fisico: {
+                category: "Preparación Biomecánica",
+                title: "Optimización Excéntrica en la Hiper-Saltabilidad",
+                content: "Los ciclos de estiramiento-acortamiento en el voleibol de sala requieren un control estricto del daño muscular. Evaluamos los nuevos planes estructurados basados en plataformas de fuerza pliométrica para reducir lesiones en ligamentos."
+            },
+            reglas: {
+                category: "Normativas del Comisionado",
+                title: "Nuevos Criterios Arbitrales sobre el Contacto en la Red",
+                content: "La Federación Internacional ha emitido directrices claras para la temporada. Se priorizará la fluidez del juego, sancionando de manera estricta únicamente aquellos contactos que interfieran directamente con la trayectoria del balón."
+            }
+        };
+
+        function changeFeaturedArticle(key) {
+            const card = document.querySelector('.editorial-card');
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.98)';
+            
+            setTimeout(() => {
+                document.getElementById('articleCategory').innerText = articles[key].category;
+                document.getElementById('articleTitle').innerText = articles[key].title;
+                document.getElementById('articleContent').innerText = articles[key].content;
+                card.style.opacity = '1';
+                card.style.transform = 'scale(1)';
+            }, 300);
+        }
+    </script>
+</body>
+</html>

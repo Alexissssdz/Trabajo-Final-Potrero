@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Voley - Archivo de Informes</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --emerald-deep: #064e3b;
+            --emerald-light: #059669;
+            --gold-accent: #d97706;
+            --premium-bg: #f8fafc;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--premium-bg);
+            color: #334155;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        h1, h2, h3 { font-family: 'Lora', serif; color: var(--emerald-deep); }
+        .editorial-navbar { background: white; border-bottom: 3px solid var(--emerald-deep); }
+        .nav-link-custom {
+            color: var(--emerald-deep); font-weight: 700; text-decoration: none; padding: 8px 16px; border-radius: 4px; transition: all 0.3s;
+        }
+        .nav-link-custom:hover, .nav-link-custom.active { color: white; background-color: var(--emerald-light); }
+        
+        .report-block {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            padding: 3rem 2rem;
+            margin-bottom: 3rem;
+            border-left: 6px solid var(--emerald-light);
+        }
+        .footer-premium { background-color: #022c22; color: #cbd5e1; border-top: 4px solid var(--gold-accent); }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg editorial-navbar sticky-top py-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <span class="fs-3">🏐</span>
+                <span class="fw-bold fs-2" style="font-family: 'Lora', serif; color: var(--emerald-deep) !important;">Todo <span style="color: var(--gold-accent);">Voley</span></span>
+            </a>
+            <div class="d-flex gap-2 ms-auto">
+                <a class="nav-link-custom" href="index.html">Inicio</a>
+                <a class="nav-link-custom" href="Analisis.html">Análisis</a>
+                <a class="nav-link-custom active" href="Informes.html">Informes Completos</a>
+                <a class="nav-link-custom" href="Pizarra.html">Pizarra Táctica</a>
+                <a class="nav-link-custom" href="Contacto.html">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5 flex-grow-1" style="max-width: 900px;">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold">Compendio de Investigaciones Técnicas</h1>
+            <p class="text-muted">Desplace la pantalla hacia abajo para consultar el desarrollo integral de nuestros tres informes de prensa especializada.</p>
+        </div>
+
+        <div class="report-block">
+            <div class="row align-items-center g-4">
+                <div class="col-md-8">
+                    <span class="text-success fw-bold small text-uppercase">Táctica Avanzada</span>
+                    <h2 class="fw-bold my-2">1. El Sistema Transicional 5-1 y su Impacto Ofensivo</h2>
+                    <p class="text-secondary lead">
+                        El voleibol contemporáneo ha modificado radicalmente las demandas impuestas sobre el colocador/armador en situaciones de alta presión.
+                    </p>
+                    <p class="text-muted">
+                        Bajo la lupa internacional, las rotaciones críticas ocurren cuando el armador se desplaza desde posiciones zagueras (1, 6, 5) hacia la red. La velocidad de transición dicta el éxito del ataque rápido (tiempos 1 y 2). Optimizar este recorrido con fintas e incorporaciones de ataque desde zona 2 permite desarticular las formaciones de bloqueo triple reactivo del oponente.
+                    </p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <svg width="140" height="140" viewBox="0 0 100 100" class="mx-auto">
+                        <rect width="100" height="100" fill="#f1f5f9" rx="8" stroke="#059669" stroke-width="2"/>
+                        <line x1="10" y1="50" x2="90" y2="50" stroke="#d97706" stroke-width="3"/>
+                        <circle cx="50" cy="30" r="12" fill="#064e3b" opacity="0.8"/>
+                        <path d="M50 30 L70 70" stroke="#ea580c" stroke-width="2" stroke-dasharray="4 2"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-block" style="border-left-color: var(--gold-accent);">
+            <div class="row align-items-center g-4">
+                <div class="col-md-4 text-center order-2 order-md-1">
+                    <svg width="140" height="140" viewBox="0 0 100 100" class="mx-auto">
+                        <circle cx="50" cy="50" r="40" fill="#fef3c7"/>
+                        <path d="M30 70 L50 30 L70 70 Z" fill="none" stroke="#d97706" stroke-width="3"/>
+                        <circle cx="50" cy="30" r="6" fill="#064e3b"/>
+                    </svg>
+                </div>
+                <div class="col-md-8 order-1 order-md-2">
+                    <span class="text-warning fw-bold small text-uppercase">Biomecánica & Físico</span>
+                    <h2 class="fw-bold my-2">2. Desarrollo Pliométrico Excéntrico en Saltabilidad</h2>
+                    <p class="text-secondary lead">
+                        La capacidad de sostener un despegue vertical óptimo por encima de los 3.20 metros requiere una estructura neuromuscular adaptada.
+                    </p>
+                    <p class="text-muted">
+                        Las metodologías actuales priorizan la amortiguación de caídas y la transferencia instantánea de fuerza (fase excéntrica a concéntrica). El uso de plataformas dinámicas demuestra que entrenar la desaceleración reduce hasta en un 42% el índice de desgaste en ligamentos rotulianos, garantizando estabilidad funcional a lo largo de torneos de alta intensidad.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-block" style="border-left-color: #dc2626;">
+            <div class="row align-items-center g-4">
+                <div class="col-md-8">
+                    <span class="text-danger fw-bold small text-uppercase">Normativa e Institución</span>
+                    <h2 class="fw-bold my-2">3. Directrices y Criterios sobre Contactos de Red (FIVB)</h2>
+                    <p class="text-secondary lead">
+                        Las normativas de arbitraje buscan mantener la dinámica y continuidad del espectáculo deportivo sin arriesgar la integridad física.
+                    </p>
+                    <p class="text-muted">
+                        La última circular ratifica que solo se penalizará el toque de red cuando el jugador interfiera con el balón de juego de forma directa, o cuando se apoye en la banda superior para obtener ventajas posicionales. Los roces involuntarios del cuerpo fuera de la zona de juego activo quedan libres de sanción para promover transiciones continuas.
+                    </p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <svg width="140" height="140" viewBox="0 0 100 100" class="mx-auto">
+                        <rect width="100" height="100" fill="#fee2e2" rx="8"/>
+                        <path d="M0 20 H100 M0 40 H100 M0 60 H100 M0 80 H100" stroke="#dc2626" stroke-width="1"/>
+                        <path d="M20 0 V100 M40 0 V100 M60 0 V100 M80 0 V100" stroke="#dc2626" stroke-width="1"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer-premium pt-5 pb-4 mt-auto">
+        <div class="container" style="max-width: 1100px;">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5 class="mb-3">🏐 Todo Voley</h5>
+                    <p class="small opacity-75">El portal de referencia técnica, metodológica e informativa del voleibol competitivo global.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Secciones Técnicas</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small">
+                        <li><a href="Analisis.html" class="footer-link">Análisis e Indicadores</a></li>
+                        <li><a href="Informes.html" class="footer-link">Librería de Informes</a></li>
+                        <li><a href="Pizarra.html" class="footer-link">Pizarra Táctica 2D</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Ubicación y Canales</h5>
+                    <p class="small opacity-75 mb-1">📍 Sede Central: San Miguel, Buenos Aires</p>
+                    <p class="small opacity-75">📧 Redacción: editorial@todovoley.com</p>
+                </div>
+            </div>
+            <hr class="border-secondary my-4">
+            <div class="row small opacity-75">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">© 2026 Todo Voley. Todos los derechos reservados.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Desarrollado de forma profesional para Alexis Gabriel Caceres.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

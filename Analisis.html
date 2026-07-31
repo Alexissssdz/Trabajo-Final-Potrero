@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Voley - Análisis e Indicadores</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --emerald-deep: #064e3b;
+            --emerald-light: #059669;
+            --gold-accent: #d97706;
+            --premium-bg: #f8fafc;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--premium-bg);
+            color: #334155;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        h1, h2, h3 { font-family: 'Lora', serif; color: var(--emerald-deep); }
+        .editorial-navbar { background: white; border-bottom: 3px solid var(--emerald-deep); }
+        .nav-link-custom {
+            color: var(--emerald-deep); font-weight: 700; text-decoration: none; padding: 8px 16px; border-radius: 4px; transition: all 0.3s;
+        }
+        .nav-link-custom:hover, .nav-link-custom.active { color: white; background-color: var(--emerald-light); }
+        
+        .preview-court {
+            background: linear-gradient(180deg, #ea580c 0%, #c2410c 100%);
+            border: 6px solid white;
+            outline: 3px solid var(--emerald-deep);
+            max-width: 450px;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            padding: 15px;
+        }
+        .position-box {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px dashed white;
+            color: white;
+            padding: 25px 10px;
+            font-weight: 800;
+            text-align: center;
+            font-size: 1.2rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 6px;
+        }
+        .active-pos {
+            background-color: var(--emerald-deep) !important;
+            border-color: var(--gold-accent) !important;
+            box-shadow: 0 0 20px rgba(219, 119, 6, 0.6);
+            transform: scale(1.05);
+        }
+        .editorial-card { background: white; border: none; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .footer-premium { background-color: #022c22; color: #cbd5e1; border-top: 4px solid var(--gold-accent); }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg editorial-navbar sticky-top py-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <span class="fs-3">🏐</span>
+                <span class="fw-bold fs-2" style="font-family: 'Lora', serif; color: var(--emerald-deep) !important;">Todo <span style="color: var(--gold-accent);">Voley</span></span>
+            </a>
+            <div class="d-flex gap-2 ms-auto">
+                <a class="nav-link-custom" href="index.html">Inicio</a>
+                <a class="nav-link-custom active" href="Analisis.html">Análisis</a>
+                <a class="nav-link-custom" href="Informes.html">Informes Completos</a>
+                <a class="nav-link-custom" href="Pizarra.html">Pizarra Táctica</a>
+                <a class="nav-link-custom" href="Contacto.html">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5 flex-grow-1" style="max-width: 1100px;">
+        
+        <div class="row g-5 mb-5">
+            <div class="col-lg-6 text-center text-lg-start">
+                <h2 class="fw-bold mb-3">Mapeo de Densidad de Zonas</h2>
+                <p class="text-muted">Explore la distribución espacial reglamentaria mediante los controles de filtrado táctico acelerado.</p>
+                
+                <div class="d-flex justify-content-center justify-content-lg-start gap-2 mb-4">
+                    <button class="btn btn-success px-3 shadow" onclick="highlightZone('ataque')">Zonas de Ataque</button>
+                    <button class="btn btn-warning text-dark px-3 shadow" onclick="highlightZone('defensa')">Zonas Defensivas</button>
+                    <button class="btn btn-outline-secondary px-3" onclick="highlightZone('reset')">Reset</button>
+                </div>
+
+                <div class="preview-court">
+                    <div class="row g-2 mb-2">
+                        <div class="col-4"><div id="z4" class="position-box">Zona 4</div></div>
+                        <div class="col-4"><div id="z3" class="position-box">Zona 3</div></div>
+                        <div class="col-4"><div id="z2" class="position-box">Zona 2</div></div>
+                    </div>
+                    <div class="border-top border-3 border-white my-3"></div>
+                    <div class="row g-2">
+                        <div class="col-4"><div id="z5" class="position-box">Zona 5</div></div>
+                        <div class="col-4"><div id="z6" class="position-box">Zona 6</div></div>
+                        <div class="col-4"><div id="z1" class="position-box">Zona 1</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="editorial-card p-4 p-md-5 h-100 border-start border-4 border-warning">
+                    <h3 class="fw-bold mb-3">Calculadora de Efectividad Neta</h3>
+                    <p class="text-muted small">Herramienta analítica para procesar el rendimiento técnico de los atacantes de manera cuantitativa.</p>
+                    
+                    <form id="calcForm" onsubmit="runEditorialCalculation(event)" class="mt-4">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-uppercase text-secondary">Ataques Exitosos (Puntos)</label>
+                            <input type="number" class="form-control form-control-lg rounded-3" id="points" min="0" required placeholder="Ej. 15">
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label small fw-bold text-uppercase text-secondary">Errores de Bloqueo / Fuera</label>
+                            <input type="number" class="form-control form-control-lg rounded-3" id="errors" min="0" required placeholder="Ej. 3">
+                        </div>
+                        <button type="submit" class="btn btn-lg btn-success w-100 text-white fw-bold shadow-sm" style="background-color: var(--emerald-deep); border:none;">Calcular Coeficiente</button>
+                    </form>
+
+                    <div id="metricResult" class="mt-4 p-4 rounded-3 border bg-light d-none font-monospace text-center fs-5 fw-bold text-success"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="my-5 border-top pt-5">
+            <h3 class="fw-bold mb-4 text-center">📈 Parámetros e Indicadores Avanzados</h3>
+            <div class="row g-4 text-center">
+                <div class="col-md-6 col-lg-3">
+                    <div class="p-3 bg-white rounded shadow-sm">
+                        <div class="fs-2 text-success fw-bold">K1</div>
+                        <h6 class="fw-bold">Fase de Complejo 1</h6>
+                        <p class="small text-muted mb-0">Recepción, armado y primer ataque directo.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="p-3 bg-white rounded shadow-sm">
+                        <div class="fs-2 text-warning fw-bold">K2</div>
+                        <h6 class="fw-bold">Fase de Complejo 2</h6>
+                        <p class="small text-muted mb-0">Fase de contraataque tras bloqueo o defensa activa.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="p-3 bg-white rounded shadow-sm">
+                        <div class="fs-2 text-danger fw-bold">>40%</div>
+                        <h6 class="fw-bold">Umbral Olímpico</h6>
+                        <p class="small text-muted mb-0">Margen neto esperado para atacantes de punta.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="p-3 bg-white rounded shadow-sm">
+                        <div class="fs-2 text-primary fw-bold">FIVB</div>
+                        <h6 class="fw-bold">Estadística Oficial</h6>
+                        <p class="small text-muted mb-0">Métricas estandarizadas en base a volumen de juego.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="footer-premium pt-5 pb-4 mt-auto">
+        <div class="container" style="max-width: 1100px;">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5 class="mb-3">🏐 Todo Voley</h5>
+                    <p class="small opacity-75">El portal de referencia técnica, metodológica e informativa del voleibol competitivo global.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Secciones Técnicas</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small">
+                        <li><a href="Analisis.html" class="footer-link">Análisis e Indicadores</a></li>
+                        <li><a href="Informes.html" class="footer-link">Librería de Informes</a></li>
+                        <li><a href="Pizarra.html" class="footer-link">Pizarra Táctica 2D</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Ubicación y Canales</h5>
+                    <p class="small opacity-75 mb-1">📍 Sede Central: San Miguel, Buenos Aires</p>
+                    <p class="small opacity-75">📧 Redacción: editorial@todovoley.com</p>
+                </div>
+            </div>
+            <hr class="border-secondary my-4">
+            <div class="row small opacity-75">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">© 2026 Todo Voley. Todos los derechos reservados.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Desarrollado de forma profesional para Alexis Gabriel Caceres.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function highlightZone(type) {
+            for(let i=1; i<=6; i++) {
+                document.getElementById('z'+i).classList.remove('active-pos');
+            }
+            if(type === 'ataque') {
+                document.getElementById('z4').classList.add('active-pos');
+                document.getElementById('z3').classList.add('active-pos');
+                document.getElementById('z2').classList.add('active-pos');
+            } else if(type === 'defensa') {
+                document.getElementById('z5').classList.add('active-pos');
+                document.getElementById('z6').classList.add('active-pos');
+                document.getElementById('z1').classList.add('active-pos');
+            }
+        }
+
+        function runEditorialCalculation(e) {
+            e.preventDefault();
+            const pts = parseInt(document.getElementById('points').value);
+            const err = parseInt(document.getElementById('errors').value);
+            const box = document.getElementById('metricResult');
+            const total = pts + err;
+            if(total === 0) return;
+            const ratio = ((pts - err) / total) * 100;
+            box.innerHTML = `📈 Eficiencia Neta Comercial: <span class="text-warning">${ratio.toFixed(1)}%</span>`;
+            box.classList.remove('d-none');
+        }
+    </script>
+</body>
+</html>

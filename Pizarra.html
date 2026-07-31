@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Voley - Pizarra Dinámica</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --emerald-deep: #064e3b;
+            --emerald-light: #059669;
+            --gold-accent: #d97706;
+            --premium-bg: #f8fafc;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--premium-bg);
+            color: #334155;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        h1, h2, h3 { font-family: 'Lora', serif; color: var(--emerald-deep); }
+        .editorial-navbar { background: white; border-bottom: 3px solid var(--emerald-deep); }
+        .nav-link-custom {
+            color: var(--emerald-deep); font-weight: 700; text-decoration: none; padding: 8px 16px; border-radius: 4px; transition: all 0.3s;
+        }
+        .nav-link-custom:hover, .nav-link-custom.active { color: white; background-color: var(--emerald-light); }
+        
+        .tactical-board {
+            width: 100%; max-width: 500px; height: 400px;
+            background-color: #065f46; border: 4px solid white;
+            position: relative; margin: 0 auto; border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15); overflow: hidden;
+            touch-action: none;
+        }
+        .net-line {
+            width: 100%; height: 4px; background-color: #fca5a5;
+            position: absolute; top: 50%; transform: translateY(-50%); border-bottom: 2px dashed white;
+        }
+        
+        .player-token {
+            width: 45px; height: 45px; background-color: var(--gold-accent);
+            color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: bold; position: absolute; cursor: move;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); border: 2px solid white; user-select: none;
+            touch-action: none; z-index: 10;
+        }
+        .footer-premium { background-color: #022c22; color: #cbd5e1; border-top: 4px solid var(--gold-accent); }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg editorial-navbar sticky-top py-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                <span class="fs-3">🏐</span>
+                <span class="fw-bold fs-2" style="font-family: 'Lora', serif; color: var(--emerald-deep) !important;">Todo <span style="color: var(--gold-accent);">Voley</span></span>
+            </a>
+            <div class="d-flex gap-2 ms-auto">
+                <a class="nav-link-custom" href="index.html">Inicio</a>
+                <a class="nav-link-custom" href="Analisis.html">Análisis</a>
+                <a class="nav-link-custom" href="Informes.html">Informes Completos</a>
+                <a class="nav-link-custom active" href="Pizarra.html">Pizarra Táctica</a>
+                <a class="nav-link-custom" href="Contacto.html">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5 flex-grow-1" style="max-width: 900px;">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold display-5">Laboratorio de Simulación Táctica</h2>
+            <p class="text-muted">Arrastre cualquiera de las 6 fichas (P1 a P6) para ensayar rotaciones, bloqueos o transiciones sobre la red.</p>
+        </div>
+
+        <div class="tactical-board shadow-lg" id="board">
+            <div class="net-line"></div>
+            <div class="player-token" id="p1" style="top: 75%; left: 75%;">P1</div>
+            <div class="player-token" id="p2" style="top: 55%; left: 75%;">P2</div>
+            <div class="player-token" id="p3" style="top: 55%; left: 45%;">P3</div>
+            <div class="player-token" id="p4" style="top: 55%; left: 15%;">P4</div>
+            <div class="player-token" id="p5" style="top: 75%; left: 15%;">P5</div>
+            <div class="player-token" id="p6" style="top: 75%; left: 45%;">P6</div>
+        </div>
+
+        <div class="text-center mt-4 mb-5">
+            <button class="btn btn-outline-success px-4" onclick="resetTokens()">Reiniciar Posiciones</button>
+        </div>
+
+        <div class="border-top pt-4">
+            <h4 class="fw-bold text-success mb-3">📋 Instrucciones Metodológicas del Simulador</h4>
+            <p class="small text-muted">Esta pizarra interactiva permite modelar la ubicación espacial del sexteto en situaciones defensivas y ofensivas. Ideal para visualizar transiciones rápidas de zaguero a delantero y coordinar los relevos de cobertura.</p>
+        </div>
+    </main>
+
+    <footer class="footer-premium pt-5 pb-4 mt-auto">
+        <div class="container" style="max-width: 1100px;">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5 class="mb-3">🏐 Todo Voley</h5>
+                    <p class="small opacity-75">El portal de referencia técnica, metodológica e informativa del voleibol competitivo global.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Secciones Técnicas</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small">
+                        <li><a href="Analisis.html" class="footer-link">Análisis e Indicadores</a></li>
+                        <li><a href="Informes.html" class="footer-link">Librería de Informes</a></li>
+                        <li><a href="Pizarra.html" class="footer-link">Pizarra Táctica 2D</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Ubicación y Canales</h5>
+                    <p class="small opacity-75 mb-1">📍 Sede Central: San Miguel, Buenos Aires</p>
+                    <p class="small opacity-75">📧 Redacción: editorial@todovoley.com</p>
+                </div>
+            </div>
+            <hr class="border-secondary my-4">
+            <div class="row small opacity-75">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">© 2026 Todo Voley. Todos los derechos reservados.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Desarrollado de forma profesional para Alexis Gabriel Caceres.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const board = document.getElementById('board');
+        const players = document.querySelectorAll('.player-token');
+        
+        const initialPositions = {
+            'p1': { top: '75%', left: '75%' },
+            'p2': { top: '55%', left: '75%' },
+            'p3': { top: '55%', left: '45%' },
+            'p4': { top: '55%', left: '15%' },
+            'p5': { top: '75%', left: '15%' },
+            'p6': { top: '75%', left: '45%' }
+        };
+
+        players.forEach(player => {
+            let isDragging = false;
+            let offsetX, offsetY;
+
+            player.addEventListener('pointerdown', (e) => {
+                isDragging = true;
+                player.setPointerCapture(e.pointerId);
+                offsetX = e.clientX - player.offsetLeft;
+                offsetY = e.clientY - player.offsetTop;
+            });
+
+            player.addEventListener('pointermove', (e) => {
+                if (!isDragging) return;
+                
+                let newX = e.clientX - offsetX;
+                let newY = e.clientY - offsetY;
+                
+                const maxRight = board.clientWidth - player.clientWidth;
+                const maxBottom = board.clientHeight - player.clientHeight;
+                
+                if (newX < 0) newX = 0;
+                if (newX > maxRight) newX = maxRight;
+                if (newY < 0) newY = 0;
+                if (newY > maxBottom) newY = maxBottom;
+                
+                player.style.left = newX + 'px';
+                player.style.top = newY + 'px';
+            });
+
+            player.addEventListener('pointerup', (e) => {
+                if (isDragging) {
+                    isDragging = false;
+                    player.releasePointerCapture(e.pointerId);
+                }
+            });
+            
+            player.addEventListener('pointercancel', (e) => {
+                if (isDragging) {
+                    isDragging = false;
+                    player.releasePointerCapture(e.pointerId);
+                }
+            });
+        });
+
+        function resetTokens() {
+            players.forEach(player => {
+                const pos = initialPositions[player.id];
+                player.style.top = pos.top;
+                player.style.left = pos.left;
+            });
+        }
+    </script>
+</body>
+</html>
